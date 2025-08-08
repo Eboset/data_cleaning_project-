@@ -1,0 +1,28 @@
+dir.create("raw_data")
+dir.create("clean_data")
+dir.create("scripts")
+
+data <- read.csv(file.choose())
+#view data in spreadsheet format
+View(data)
+
+#check structure of the dataset
+str(data)
+
+#convert gender, diagnosis, and smoker to factors
+data$gender_fac <- as.factor(data$gender)
+str(data)
+
+data$diagnosis_fac <- as.factor(data$diagnosis)
+str(data)
+
+data$smoker_fac <- as.factor(data$smoker)
+str(data)
+
+#convert factor to numeric using ifelse statement (Yes = 1, No = 0)
+data$smoker_num <- ifelse(data$smoker_fac == "Yes", 1, 0)
+class(data$smoker_num)
+
+#convert numeric smoker code to factor
+data$smoker_num <- as.factor(data$smoker_num)
+class(data$smoker_num)
